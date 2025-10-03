@@ -1,0 +1,16 @@
+extern print
+extern print_hash
+extern create_table
+
+
+function main():
+
+    x = "hello\n"
+    
+
+    print(x)
+    x[1] = 97
+    print(x)
+    print("char at pos 1 : " + x[1]+"\n")
+
+end

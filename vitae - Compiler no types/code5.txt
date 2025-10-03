@@ -1,0 +1,9 @@
+function test():
+    return 42
+end
+
+
+function main():
+    
+    x = test()
+end

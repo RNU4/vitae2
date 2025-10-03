@@ -1,0 +1,114 @@
+extern print
+extern print_hash
+extern create_table
+
+# === Function Definitions ===
+
+function calc(a,b):
+    sum = a + b
+    diff = a - b
+    prod = a * b
+    quot = a / b
+    mod_val = a % b
+    return {"sum":sum,"diff":diff,"prod":prod,"quot":quot,"mod_val":mod_val}
+end
+
+function make_table(a,b):
+    return {"x":a,"y":b}
+end
+
+# === Main Program ===
+
+function main():
+    # === Testing Tables ===
+    rect = {"top_left":{"x":0,"y":0},"bottom_right":{"x":10,"y":5}}
+    print("Top-left: x="+rect.top_left.x+", y="+rect.top_left.y+"\n")
+    print("Bottom-right: x="+rect.bottom_right.x+", y="+rect.bottom_right.y+"\n")
+
+    # Update values
+    rect.top_left.x = 2
+    rect.top_left.y = 3
+    print("Updated Top-left: x="+rect.top_left.x+", y="+rect.top_left.y+"\n")
+
+    # Nested tables
+    nested = {"inner1":{"a":1,"b":2},"inner2":{"c":3,"d":4}}
+    print("Nested inner1 a="+nested.inner1.a+", b="+nested.inner1.b+"\n")
+    print("Nested inner2 c="+nested.inner2.c+", d="+nested.inner2.d+"\n")
+
+    # === Testing Conditionals ===
+    x = 3
+    if x < 5 then
+        print("x is less than 5\n")
+    else
+        print("x is greater or equal to 5\n")
+    end
+
+    # === Testing Loops ===
+    print("Loop1 i = 1..3\n")
+    i = 0
+    while i < 3 then
+        i = i + 1
+        print("Loop1 i = "+i+"\n")
+
+        j = 0
+        while j < 2 then
+            j = j + 1
+            print("  Inner loop j = "+j+"\n")
+        end
+    end
+
+    # Nested arithmetic loops
+    total = 0
+    j = 0
+    while j < 2 then
+        j = j + 1
+        k = 0
+        while k < 2 then
+            k = k + 1
+            total = total + (j + k)
+            print("j="+j+", k="+k+", total="+total+"\n")
+        end
+    end
+    print("Final total = "+total+"\n")
+
+    # === Testing Functions & Arithmetic ===
+    result1 = calc(10,5)
+    print("a+b = "+result1.sum+" a-b = "+result1.diff+" a*b = "+result1.prod+" a/b = "+result1.quot+" a%b = "+result1.mod_val+"\n")
+    print("Result of calc(10, 5) = "+result1.prod+"\n")
+
+    result2 = calc(7,3)
+    print("a+b = "+result2.sum+" a-b = "+result2.diff+" a*b = "+result2.prod+" a/b = "+result2.quot+" a%b = "+result2.mod_val+"\n")
+    print("Result of calc(7, 3) = "+result2.prod+"\n")
+
+    # === Testing String Concatenation ===
+    str1 = "Hello"
+    str2 = "World"
+    concat = str1 + " " + str2
+    print("Concatenated string: "+concat+"\n")
+    empty_concat = "" + "abc"
+    print("Empty string concat: "+empty_concat+"\n")
+
+    # === Testing Return of Table ===
+    t = make_table(3,7)
+    print("Returned table contents:\n")
+    print("x = "+t.x+", y = "+t.y+"\n")
+
+    # === Stress Test: Nested Tables + Loops + Strings ===
+    big = {
+        "level1":{"val":1,"level2":{"val":2,"level3":{"val":3}}},
+        "numbers":{"a":10,"b":20}
+    }
+
+    m = 0
+    while m < 2 then
+        m = m + 1
+        n = 0
+        while n < 2 then
+            n = n + 1
+            big.level1.level2.level3.val = big.level1.level2.level3.val + m + n
+            print("Stress loop m="+m+", n="+n+", val="+big.level1.level2.level3.val+"\n")
+        end
+    end
+
+    print("=== All tests completed ===\n")
+end

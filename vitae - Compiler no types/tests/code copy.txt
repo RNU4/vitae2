@@ -1,0 +1,40 @@
+extern print
+extern print_hash
+extern create_table
+
+function multiply_add(x, y, z):
+    result = x * y + z
+    return result
+end
+
+function main():
+    a = 12
+    b = 5
+    c = 3.5
+    name = "Test"
+
+    sum_val = a + b
+    diff_val = a - b
+    prod_val = a * b
+    quot_val = a / b
+    modulo_val = a % b
+    mixed1 = a + c
+    mixed2 = b * c
+    str_val = name + mixed1
+
+    table1 = { "sum": sum_val, "diff": diff_val, "prod": prod_val, "quot": quot_val, "mod": modulo_val, "mixed1": mixed1, "mixed2": mixed2, "str_val": str_val }
+
+    table2 = { "inner1": table1, "inner2": { "calc1": multiply_add(a, b, c), "calc2": multiply_add(mixed1, mixed2, modulo_val) } }
+
+    table2["inner1"]["new_val"] = table2["inner1"]["sum"] * table2["inner1"]["diff"] / table2["inner1"]["prod"] + table2["inner1"]["mod"]
+
+    print_hash(table1)
+    print_hash(table2)
+    print("Final new_val = " + table2["inner1"]["new_val"] + "\n")
+    print("Check mixed1 = " + table2["inner1"]["mixed1"] + "\n")
+    print("Check mixed2 = " + table2["inner1"]["mixed2"] + "\n")
+    print("String concat test: " + table2["inner1"]["str_val"] + "\n")
+    print("Function calc1: " + table2["inner2"]["calc1"] + "\n")
+    print("Function calc2: " + table2["inner2"]["calc2"] + "\n")
+
+end

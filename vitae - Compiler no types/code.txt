@@ -1,0 +1,17 @@
+extern print
+extern create_table
+extern print_hash
+
+function main():
+    
+    x = create_table()
+    
+    x["hello"] = 22
+    
+    print_hash(x)
+    print("##################\n")
+    print("\nTABLE TEST : "+x["hello"]+"\n")
+    print("##################\n")
+
+
+end
